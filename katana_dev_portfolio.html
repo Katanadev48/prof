@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="الموقع الشخصي ومعرض أعمال ومشاريع KATANA DEV">
+  <title>KATANA DEV | Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+    :root{--bg:#090d18;--panel:#111827;--muted:#9ca9bd;--text:#f7f9ff;--accent:#7c5cff;--accent2:#22d3ee;--line:rgba(255,255,255,.09)}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Cairo',sans-serif;background:radial-gradient(ellipse at 85% 5%,rgba(124,92,255,.18),transparent 35%),radial-gradient(ellipse at 5% 45%,rgba(34,211,238,.09),transparent 30%),var(--bg);color:var(--text);line-height:1.8}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1100px,92%);margin:auto}
+    header{position:sticky;top:0;z-index:10;background:rgba(9,13,24,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .logo{font-size:1.35rem;font-weight:900;letter-spacing:1px}.logo span{color:var(--accent2)}
+    .navlinks{display:flex;gap:24px;color:var(--muted);font-size:.92rem}.navlinks a:hover{color:white}
+    .hero{padding:95px 0 75px;display:grid;grid-template-columns:1.3fr .7fr;align-items:center;gap:50px}
+    .tag{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(34,211,238,.28);background:rgba(34,211,238,.08);color:#8beafa;padding:7px 14px;border-radius:50px;font-size:.85rem}
+    h1{font-size:clamp(2.6rem,6vw,4.8rem);line-height:1.2;margin:22px 0 15px;font-weight:900}
+    h1 span{background:linear-gradient(90deg,var(--accent2),#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .intro{color:var(--muted);font-size:1.08rem;max-width:620px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .btn{display:inline-block;padding:11px 22px;border-radius:12px;font-weight:700;border:1px solid var(--line);transition:.2s}
+    .btn.primary{background:linear-gradient(110deg,var(--accent),#5b8cff);border:0}.btn:hover{transform:translateY(-3px)}
+    .profile-card{background:linear-gradient(145deg,rgba(124,92,255,.22),rgba(17,24,39,.9));border:1px solid var(--line);border-radius:28px;padding:28px;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,.28)}
+    .avatar{width:145px;height:145px;margin:0 auto 18px;border-radius:35px;display:grid;place-items:center;font-size:3rem;font-weight:900;background:linear-gradient(135deg,#7c5cff,#22d3ee);color:white;box-shadow:0 12px 40px rgba(124,92,255,.3)}
+    .profile-card p{color:var(--muted);font-size:.92rem}.profile-card strong{font-size:1.3rem}
+    section{padding:55px 0}.section-head{margin-bottom:26px}.eyebrow{color:var(--accent2);font-size:.82rem;font-weight:800}.section-head h2{font-size:2rem;margin-top:4px}
+    .about,.project,.contact-card,.skill{background:rgba(17,24,39,.78);border:1px solid var(--line);border-radius:20px}
+    .about{padding:25px;color:var(--muted)}
+    .skills{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}.skill{padding:9px 16px;color:#dce5f5;font-size:.9rem}
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .project{padding:23px;transition:.25s}.project:hover{transform:translateY(-5px);border-color:rgba(124,92,255,.55)}
+    .project-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(124,92,255,.16);font-size:1.4rem;margin-bottom:15px}
+    .project h3{font-size:1.15rem}.project p{color:var(--muted);font-size:.92rem;margin:7px 0 16px}
+    .project a{color:#9c8bff;font-size:.9rem;font-weight:700}
+    .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+    .contact-card{padding:20px}.contact-card small{display:block;color:var(--muted);margin-bottom:5px}.contact-card a{overflow-wrap:anywhere;color:#b8c5ff}
+    footer{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);text-align:center;font-size:.85rem}
+    body{background-color:#05060b;background-image:radial-gradient(ellipse at 82% 4%,rgba(124,92,255,.2),transparent 34%),radial-gradient(ellipse at 6% 40%,rgba(34,211,238,.12),transparent 32%),linear-gradient(180deg,#07080f,#090d18 55%,#05070d)}
+    .profile-card,.about,.project,.contact-card,.skill{background:linear-gradient(145deg,rgba(22,27,45,.78),rgba(12,17,30,.68));border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 18px 55px rgba(0,0,0,.2)}
+    .profile-card{position:relative;overflow:hidden;transform-style:preserve-3d;perspective:900px}
+    .profile-card:before{content:"";position:absolute;inset:-1px;background:radial-gradient(circle at 50% 0%,rgba(34,211,238,.17),transparent 46%);pointer-events:none}
+    .profile-card>*{position:relative;transform:translateZ(22px)}
+    .avatar{position:relative;animation:avatar-float 4s ease-in-out infinite;transform-style:preserve-3d}
+    .avatar:after{content:"";position:absolute;inset:-7px;border-radius:inherit;border:1px solid rgba(34,211,238,.35);transform:translateZ(-8px);box-shadow:0 0 34px rgba(124,92,255,.22)}
+    @keyframes avatar-float{0%,100%{transform:translateY(0) rotateY(-7deg) rotateX(4deg)}50%{transform:translateY(-9px) rotateY(7deg) rotateX(-3deg)}}
+    .btn{position:relative;isolation:isolate;overflow:hidden;box-shadow:0 7px 22px rgba(0,0,0,.18)}
+    .btn:before{content:"";position:absolute;inset:-60% auto -60% -45%;width:35%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:rotate(22deg);transition:left .55s ease;z-index:-1}
+    .btn:hover{box-shadow:0 10px 30px rgba(124,92,255,.3);border-color:rgba(34,211,238,.45)}
+    .btn:hover:before{left:120%}
+    .project{position:relative;overflow:hidden;transform-style:preserve-3d;will-change:transform;transition:transform .18s ease,border-color .25s ease,box-shadow .25s ease;background:linear-gradient(145deg,rgba(22,27,45,.82),rgba(12,17,30,.72))}
+    .project:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--glow-x,50%) var(--glow-y,0%),rgba(34,211,238,.14),transparent 48%);opacity:0;transition:opacity .25s ease;pointer-events:none}
+    .project:hover{border-color:rgba(34,211,238,.38);box-shadow:0 22px 50px rgba(0,0,0,.32),0 0 30px rgba(124,92,255,.1)}
+    .project:hover:before{opacity:1}
+    .project>*{position:relative;transform:translateZ(22px)}
+    .project-icon{box-shadow:inset 0 1px rgba(255,255,255,.15),0 8px 20px rgba(124,92,255,.12)}
+    .skill,.contact-card,.about{transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+    .skill:hover,.contact-card:hover{transform:translateY(-4px);border-color:rgba(34,211,238,.3);box-shadow:0 12px 30px rgba(0,0,0,.24)}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.25,1);transition-delay:var(--reveal-delay,0ms)}
+    .reveal.is-visible{opacity:1;transform:translateY(0)}
+    .hero .reveal{transform:translateY(18px)}
+    .hero .reveal.is-visible{transform:translateY(0)}
+    .navlinks a{transition:color .2s ease,text-shadow .2s ease}
+    .navlinks a:hover{color:#fff;text-shadow:0 0 18px rgba(34,211,238,.5)}
+    @media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:65px;gap:30px}.profile-card{max-width:360px;width:100%;margin:auto}.projects{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}.navlinks{gap:12px;font-size:.8rem}.logo{font-size:1.1rem}}
+    @media(max-width:430px){nav{align-items:flex-start;padding:14px 0;flex-direction:column}.navlinks{width:100%;justify-content:space-between}.hero{padding-top:45px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}.project{transform:none!important}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="logo" href="#">KATANA<span>DEV</span></a>
+        <div class="navlinks">
+          <a href="#about">من أنا</a><a href="#projects">مشاريعي</a><a href="#skills">مهاراتي</a><a href="#contact">تواصل معي</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="tag">✦ مطوّر ويب ومهتم بالتكنولوجيا</span>
+        <h1>مرحباً، أنا <span> KATANA DEV</span></h1>
+        <p class="intro">أصمم وأطوّر مواقع ويب عصرية، وأحوّل الأفكار إلى مشاريع رقمية بسيطة وأنيقة وسهلة الاستخدام.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">اكتشف مشاريعي</a>
+          <a class="btn" href="#contact">تواصل معي</a>
+        </div>
+      </div>
+      <div class="profile-card">
+        <div class="avatar">KD</div>
+        <strong>KATANA DEV</strong>
+        <p>Web Developer • Morocco</p>
+        <p style="margin-top:12px">HTML · CSS · JavaScript · Python</p>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-head"><span class="eyebrow">01 / ABOUT</span><h2>من أنا؟</h2></div>
+      <div class="about">أنا مطوّر ومهتم بإنشاء المواقع والحلول الرقمية. أحب تعلّم التقنيات الجديدة والعمل على أفكار تجمع بين التصميم الجميل والوظائف العملية. أعمل على تطوير مهاراتي باستمرار وبناء مشاريع خاصة بي.</div>
+    </section>
+
+    <section id="projects">
+      <div class="section-head"><span class="eyebrow">02 / PROJECTS</span><h2>مشاريعي</h2></div>
+      <div class="projects">
+        <article class="project"><div class="project-icon">🛍️</div><h3>KATANA SHOP</h3><p>فكرة متجر إلكتروني لعرض المنتجات والبيع عبر الإنترنت، مع واجهة وإدارة للطلبات.</p><a href="#" data-placeholder>أضف رابط المشروع ↗</a></article>
+        <article class="project"><div class="project-icon">📈</div><h3>SMM PRO</h3><p>متجر خدمات السوشيال ميديا، فيه بحث وترتيب للخدمات، سلة مشتريات، حسابات زبناء وطلبات شحن الرصيد.</p><a href="ht/index.html" target="_blank" rel="noopener noreferrer">عرض المشروع ↗</a></article>
+        <article class="project"><div class="project-icon">🖤</div><h3>KATANA PARFUM</h3><p>متجر عطور بتصميم فاخر، وتصنيفات للرجال والنساء ونموذج لطلبات العطور.</p><a href="#" data-placeholder>أضف رابط المشروع ↗</a></article>
+        <article class="project"><div class="project-icon">🌐</div><h3>TOKYO SHOP / COMMUNITY</h3><p>مشروع متجر ومجتمع رقمي قابل للتطوير وإضافة خدمات وصفحات جديدة.</p><a href="#" data-placeholder>أضف رابط المشروع ↗</a></article>
+        <article class="project"><div class="project-icon">💻</div><h3>WEB & DIGITAL PROJECTS</h3><p>تجارب وأفكار في تطوير المواقع والأدوات الرقمية باستخدام HTML وCSS وJavaScript وPython.</p><a href="#" data-placeholder>أضف رابط المشروع ↗</a></article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-head"><span class="eyebrow">03 / SKILLS</span><h2>مهاراتي</h2></div>
+      <div class="skills">
+        <span class="skill">HTML5</span><span class="skill">CSS3</span><span class="skill">JavaScript</span><span class="skill">Python</span><span class="skill">Responsive Design</span><span class="skill">Web Design</span><span class="skill">Chef d’équipe</span>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-head"><span class="eyebrow">04 / CONTACT</span><h2>تواصل معي</h2></div>
+      <div class="contact-grid">
+        <div class="contact-card"><small>Gmail</small><a href="mailto:YOUR_EMAIL@gmail.com">YOUR_EMAIL@gmail.com</a></div>
+        <div class="contact-card"><small>الهاتف / WhatsApp</small><a href="tel:+212600000000">+212 6XX XX XX XX</a></div>
+        <div class="contact-card"><small>Instagram</small><a href="#" data-placeholder>@YOUR_USERNAME</a></div>
+        <div class="contact-card"><small>GitHub</small><a href="#" data-placeholder>github.com/YOUR_USERNAME</a></div>
+        <div class="contact-card"><small>Facebook</small><a href="#" data-placeholder>رابط حسابك</a></div>
+        <div class="contact-card"><small>TikTok</small><a href="#" data-placeholder>@YOUR_USERNAME</a></div>
+      </div>
+    </section>
+  </main>
+  <footer>© 2026 KATANA DEV — جميع الحقوق محفوظة</footer>
+  <script>
+    const motionOff = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealItems = document.querySelectorAll('.hero > div, .section-head, .about, .project, .skill, .contact-card');
+    revealItems.forEach((item, index) => {
+      item.classList.add('reveal');
+      item.style.setProperty('--reveal-delay', `${(index % 4) * 80}ms`);
+    });
+
+    if ('IntersectionObserver' in window && !motionOff) {
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(item => revealObserver.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add('is-visible'));
+    }
+
+    if (!motionOff && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      document.querySelectorAll('.project').forEach(card => {
+        card.addEventListener('pointermove', event => {
+          const bounds = card.getBoundingClientRect();
+          const x = (event.clientX - bounds.left) / bounds.width;
+          const y = (event.clientY - bounds.top) / bounds.height;
+          const rotateY = (x - 0.5) * 10;
+          const rotateX = (0.5 - y) * 10;
+          card.style.setProperty('--glow-x', `${x * 100}%`);
+          card.style.setProperty('--glow-y', `${y * 100}%`);
+          card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+        });
+        card.addEventListener('pointerleave', () => {
+          card.style.transform = '';
+          card.style.removeProperty('--glow-x');
+          card.style.removeProperty('--glow-y');
+        });
+      });
+    }
+
+    // امنع روابط القوالب من الانتقال إلى صفحة غير موجودة
+    document.querySelectorAll('[data-placeholder]').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        alert('بدّل هذا الرابط برابط حسابك أو مشروعك الحقيقي داخل ملف katana_dev_portfolio.html');
+      });
+    });
+  </script>
+</body>
+</html>
